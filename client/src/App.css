@@ -36,7 +36,15 @@ img {
 
 /* Utilities */
 .container {
-  max-width: 1100px;
+  max-width: 900px;
+  margin: auto;
+  overflow: hidden;
+  padding: 0 2rem;
+  margin-top: 6rem;
+  margin-bottom: 3rem;
+}
+.container-auth {
+  max-width: 500px;
   margin: auto;
   overflow: hidden;
   padding: 0 2rem;
@@ -52,13 +60,13 @@ img {
 }
 
 .large {
-  font-size: 3rem;
+  font-size: 1.5rem;
   line-height: 1.2;
   margin-bottom: 1rem;
 }
 
 .lead {
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin-bottom: 1rem;
 }
 
@@ -216,6 +224,7 @@ img {
 
 .round-img {
   border-radius: 50%;
+  width: 200px;
 }
 
 .line {
@@ -290,7 +299,7 @@ button {
 
 .table th,
 .table td {
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   text-align: left;
 }
 
