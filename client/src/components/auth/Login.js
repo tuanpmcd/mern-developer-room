@@ -26,7 +26,7 @@ const Login = ({ login, isAuthenticated }) => {
 
   return (
     <section className="container-auth">
-      <h1 className="large text-primary">Sign In</h1>
+      <h1 className="text-primary">Sign In</h1>
       <p className="lead">
         <i className="fas fa-user" /> Sign Into Your Account
       </p>
