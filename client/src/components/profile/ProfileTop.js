@@ -12,17 +12,17 @@ const ProfileTop = ({
   }
 }) => {
   return (
-    <div className="profile-top bg-primary p-2">
-      <img className="round-img my-1" src={avatar} alt="" />
-      <h1 className="large">{name}</h1>
-      <p className="lead">
+    <div className="bg-info p-2 d-flex flex-column align-items-center text-white">
+      <img className="rounded-circle my-1" width={100} src={avatar} alt="" />
+      <h3>{name}</h3>
+      <p className="lead mb-2">
         {status} {company ? <span> at {company}</span> : null}
       </p>
-      <p>{location ? <span>{location}</span> : null}</p>
-      <div className="icons my-1">
+      <p className='mb-2'>{location ? <span>{location}</span> : null}</p>
+      <div className="my-1">
         {website ? (
           <a href={website} target="_blank" rel="noopener noreferrer">
-            <i className="fas fa-globe fa-2x" />
+            <i className="fas fa-globe text-white" />
           </a>
         ) : null}
         {social

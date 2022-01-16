@@ -12,21 +12,24 @@ const ProfileItem = ({
   }
 }) => {
   return (
-    <div className='profile bg-light'>
-      <img src={avatar} alt='' className='round-img' />
-      <div>
+    <div
+      className='col-lg-3 border mb-2 py-2 d-flex flex-column align-items-center'
+      style={{ boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)" }}
+    >
+      <img src={avatar} alt='' className="rounded-circle my-3" width={150} />
+      <div className='d-flex flex-column align-items-center'>
         <h2>{name}</h2>
-        <p>
+        <p className='text-center mb-2'>
           {status} {company && <span> at {company}</span>}
         </p>
-        <p className='my'>{location && <span>{location}</span>}</p>
-        <Link to={`/profile/${_id}`} className='btn btn-primary'>
+        <p className='mb-2'>{location && <span>{location}</span>}</p>
+        <Link to={`/profile/${_id}`} className='btn btn-info btn-sm text-white mb-2'>
           View Profile
         </Link>
       </div>
-      <ul>
+      <ul className='list-group list-group-flush'>
         {skills.slice(0, 4).map((skill, index) => (
-          <li key={index} className='text-primary'>
+          <li key={index} className='list-group-item text-info'>
             <i className='fas fa-check' /> {skill}
           </li>
         ))}

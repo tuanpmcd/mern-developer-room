@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
@@ -11,28 +11,30 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
   }, [getProfiles]);
 
   return (
-    <section className="container">
+    <div className="container">
       {loading ? (
         <Spinner />
       ) : (
-        <Fragment>
-          <h1 className="large text-primary">Developers</h1>
-          <p className="lead">
-            <i className="fab fa-connectdevelop" /> Browse and connect with
-            developers
-          </p>
-          <div className="profiles">
-            {profiles.length > 0 ? (
-              profiles.map((profile) => (
-                <ProfileItem key={profile._id} profile={profile} />
-              ))
-            ) : (
-              <h4>No profiles found...</h4>
-            )}
+        <div className='row mb-4'>
+          <div className='mt-4'>
+            <h4 className="mt-5 mb-3">Developers</h4>
+            <p className="lead mb-4">
+              <i className="fas fa-users" /> Browse and connect with
+              developers
+            </p>
+            <div className='row'>
+              {profiles.length > 0 ? (
+                profiles.map((profile) => (
+                  <ProfileItem key={profile._id} profile={profile} />
+                ))
+              ) : (
+                <h4>No profiles found...</h4>
+              )}
+            </div>
           </div>
-        </Fragment>
+        </div>
       )}
-    </section>
+    </div>
   );
 };
 

@@ -25,38 +25,48 @@ const Login = ({ login, isAuthenticated }) => {
   }
 
   return (
-    <section className="container-auth">
-      <h1 className="text-primary">Sign In</h1>
-      <p className="lead">
-        <i className="fas fa-user" /> Sign Into Your Account
-      </p>
-      <form className="form" onSubmit={onSubmit}>
-        <div className="form-group">
-          <input
-            type="email"
-            placeholder="Email Address"
-            name="email"
-            value={email}
-            onChange={onChange}
-            required
-          />
+    <div className='container'>
+      <div className="row">
+        <div className="col-md-4 mt-5 mx-auto">
+          <form onSubmit={onSubmit}>
+            <h1 className="text-info mt-5 mb-4">Sign In</h1>
+            <p>
+              <i className="fas fa-user" /> Sign Into Your Account
+            </p>
+            <div className="mb-3">
+              <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+              <input type="email"
+                className="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Email Address"
+                name="email"
+                value={email}
+                onChange={onChange}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+              <input
+                type="password"
+                className="form-control"
+                id="exampleInputPassword1"
+                placeholder="Password"
+                name="password"
+                value={password}
+                onChange={onChange}
+                minLength="6"
+              />
+            </div>
+            <button type="submit" className="btn btn-info text-white">Log in</button>
+          </form>
+          <p className="my-1">
+            Don't have an account? <Link className='text-info' to="/register">Sign Up</Link>
+          </p>
         </div>
-        <div className="form-group">
-          <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            value={password}
-            onChange={onChange}
-            minLength="6"
-          />
-        </div>
-        <input type="submit" className="btn btn-primary" value="Login" />
-      </form>
-      <p className="my-1">
-        Don't have an account? <Link to="/register">Sign Up</Link>
-      </p>
-    </section>
+      </div>
+    </div>
   );
 };
 

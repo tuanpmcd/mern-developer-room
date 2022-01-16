@@ -32,58 +32,75 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   }
 
   return (
-    <section className="container-auth">
-      <h1 className="text-primary">Sign Up</h1>
-      <p className="lead">
-        <i className="fas fa-user" /> Create Your Account
-      </p>
-      <form className="form" onSubmit={onSubmit}>
-        <div className="form-group">
-          <input
-            type="text"
-            placeholder="Name"
-            name="name"
-            value={name}
-            onChange={onChange}
-          />
+    <div className='container'>
+      <div className="row">
+        <div className="col-md-4 mt-5 mx-auto">
+          <h1 className="text-info mt-5 mb-4">Sign Up</h1>
+          <p>
+            <i className="fas fa-user" /> Create Your Account
+          </p>
+          <form onSubmit={onSubmit}>
+            <div className="mb-3">
+              <label htmlFor="exampleInputName" className="form-label">Name</label>
+              <input type="text"
+                className="form-control"
+                id="exampleInputName"
+                aria-describedby="nameHelp"
+                placeholder="Name"
+                name="name"
+                value={name}
+                onChange={onChange}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+              <input type="email"
+                className="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Email Address"
+                name="email"
+                value={email}
+                onChange={onChange}
+                required
+              />
+              <div id="emailHelp" className="form-text text-info">This site uses Gravatar so if you want a profile image, use a Gravatar email.</div>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+              <input
+                type="password"
+                className="form-control"
+                id="exampleInputPassword1"
+                placeholder="Password"
+                name="password"
+                value={password}
+                onChange={onChange}
+                minLength="6"
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="exampleInputPassword2" className="form-label">Confirm Password</label>
+              <input
+                type="password"
+                className="form-control"
+                id="exampleInputPassword2"
+                placeholder="Confirm Password"
+                name="password2"
+                value={password2}
+                onChange={onChange}
+                minLength="6"
+              />
+            </div>
+            <button type="submit" className="btn btn-info text-white">Register</button>
+          </form>
+          <p className="my-1">
+            Already have an account? <Link className='text-info' to="/login">Sign In</Link>
+          </p>
         </div>
-        <div className="form-group">
-          <input
-            type="email"
-            placeholder="Email Address"
-            name="email"
-            value={email}
-            onChange={onChange}
-          />
-          <small className="form-text">
-            This site uses Gravatar so if you want a profile image, use a
-            Gravatar email
-          </small>
-        </div>
-        <div className="form-group">
-          <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            value={password}
-            onChange={onChange}
-          />
-        </div>
-        <div className="form-group">
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            name="password2"
-            value={password2}
-            onChange={onChange}
-          />
-        </div>
-        <input type="submit" className="btn btn-primary" value="Register" />
-      </form>
-      <p className="my-1">
-        Already have an account? <Link to="/login">Sign In</Link>
-      </p>
-    </section>
+      </div>
+    </div>
   );
 };
 

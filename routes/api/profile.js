@@ -62,13 +62,8 @@ router.post(
     // build a profile
     const profileFields = {
       user: req.user.id,
-      website:
-        website && website !== ''
-          ? normalize(website, { forceHttps: true })
-          : '',
-      skills: Array.isArray(skills)
-        ? skills
-        : skills.split(',').map((skill) => ' ' + skill.trim()),
+      website: website && website !== '' ? normalize(website, { forceHttps: true }) : '',
+      skills: Array.isArray(skills) ? skills : skills.split(',').map((skill) => ' ' + skill.trim()),
       ...rest
     };
 
@@ -162,8 +157,7 @@ router.put(
   auth,
   check('title', 'Title is required').notEmpty(),
   check('company', 'Company is required').notEmpty(),
-  check('from', 'From date is required and needs to be from the past')
-    .notEmpty()
+  check('from', 'From date is required and needs to be from the past').notEmpty()
     .custom((value, { req }) => (req.body.to ? value < req.body.to : true)),
   async (req, res) => {
     const errors = validationResult(req);
