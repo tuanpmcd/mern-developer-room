@@ -1,6 +1,4 @@
 import api from '../utils/api';
-import { setAlert } from './alert';
-
 import {
   GET_PROFILE,
   GET_PROFILES,
@@ -11,6 +9,7 @@ import {
   GET_REPOS,
   NO_REPOS
 } from './types';
+import { toast } from "react-toastify"
 
 /*
   NOTE: we don't need a config object for axios as the
@@ -76,7 +75,6 @@ export const getProfileById = (userId) => async (dispatch) => {
 export const getGithubRepos = (username) => async (dispatch) => {
   try {
     const res = await api.get(`/profile/github/${username}`);
-
     dispatch({
       type: GET_REPOS,
       payload: res.data
@@ -91,35 +89,32 @@ export const getGithubRepos = (username) => async (dispatch) => {
 // Create or update profile
 export const createProfile =
   (formData, navigate, edit = false) =>
-  async (dispatch) => {
-    try {
-      const res = await api.post('/profile', formData);
+    async (dispatch) => {
+      try {
+        const res = await api.post('/profile', formData);
 
-      dispatch({
-        type: GET_PROFILE,
-        payload: res.data
-      });
+        dispatch({
+          type: GET_PROFILE,
+          payload: res.data
+        });
 
-      dispatch(
-        setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success')
-      );
+        toast.success(edit ? 'Profile Updated' : 'Profile Created')
+        if (!edit) {
+          navigate('/dashboard');
+        }
+      } catch (err) {
+        const errors = err.response.data.errors;
 
-      if (!edit) {
-        navigate('/dashboard');
+        if (errors) {
+          errors.forEach((error) => toast.error(error.msg))
+        }
+
+        dispatch({
+          type: PROFILE_ERROR,
+          payload: { msg: err.response.statusText, status: err.response.status }
+        });
       }
-    } catch (err) {
-      const errors = err.response.data.errors;
-
-      if (errors) {
-        errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
-      }
-
-      dispatch({
-        type: PROFILE_ERROR,
-        payload: { msg: err.response.statusText, status: err.response.status }
-      });
-    }
-  };
+    };
 
 // Add Experience
 export const addExperience = (formData, navigate) => async (dispatch) => {
@@ -131,14 +126,13 @@ export const addExperience = (formData, navigate) => async (dispatch) => {
       payload: res.data
     });
 
-    dispatch(setAlert('Experience Added', 'success'));
-
+    toast.success('Experience Added')
     navigate('/dashboard');
   } catch (err) {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+      errors.forEach((error) => toast.error(error.msg))
     }
 
     dispatch({
@@ -158,14 +152,13 @@ export const addEducation = (formData, navigate) => async (dispatch) => {
       payload: res.data
     });
 
-    dispatch(setAlert('Education Added', 'success'));
-
+    toast.success('Education Added')
     navigate('/dashboard');
   } catch (err) {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+      errors.forEach((error) => toast.error(error.msg));
     }
 
     dispatch({
@@ -185,7 +178,7 @@ export const deleteExperience = (id) => async (dispatch) => {
       payload: res.data
     });
 
-    dispatch(setAlert('Experience Removed', 'success'));
+    toast.success('Experience Removed')
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
@@ -204,7 +197,7 @@ export const deleteEducation = (id) => async (dispatch) => {
       payload: res.data
     });
 
-    dispatch(setAlert('Education Removed', 'success'));
+    toast.success('Education Removed')
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
@@ -222,7 +215,7 @@ export const deleteAccount = () => async (dispatch) => {
       dispatch({ type: CLEAR_PROFILE });
       dispatch({ type: ACCOUNT_DELETED });
 
-      dispatch(setAlert('Your account has been permanently deleted'));
+      toast.success('Your account has been permanently deleted')
     } catch (err) {
       dispatch({
         type: PROFILE_ERROR,

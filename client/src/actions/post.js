@@ -1,5 +1,4 @@
 import api from '../utils/api';
-import { setAlert } from './alert';
 import {
   GET_POSTS,
   POST_ERROR,
@@ -10,6 +9,7 @@ import {
   ADD_COMMENT,
   REMOVE_COMMENT
 } from './types';
+import { toast } from "react-toastify"
 
 // Get posts
 export const getPosts = () => async (dispatch) => {
@@ -72,7 +72,7 @@ export const deletePost = (id) => async (dispatch) => {
       payload: id
     });
 
-    dispatch(setAlert('Post Removed', 'success'));
+    toast.success("Post Removed")
   } catch (err) {
     dispatch({
       type: POST_ERROR,
@@ -91,7 +91,7 @@ export const addPost = (formData) => async (dispatch) => {
       payload: res.data
     });
 
-    dispatch(setAlert('Post Created', 'success'));
+    toast.success("Post Created")
   } catch (err) {
     dispatch({
       type: POST_ERROR,
@@ -127,7 +127,7 @@ export const addComment = (postId, formData) => async (dispatch) => {
       payload: res.data
     });
 
-    dispatch(setAlert('Comment Added', 'success'));
+    toast.success("Comment Added")
   } catch (err) {
     dispatch({
       type: POST_ERROR,
@@ -146,7 +146,7 @@ export const deleteComment = (postId, commentId) => async (dispatch) => {
       payload: commentId
     });
 
-    dispatch(setAlert('Comment Removed', 'success'));
+    toast.success("Comment Removed")
   } catch (err) {
     dispatch({
       type: POST_ERROR,

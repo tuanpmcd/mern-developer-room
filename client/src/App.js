@@ -4,7 +4,6 @@ import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
-import Alert from './components/layout/Alert';
 import Dashboard from './components/dashboard/Dashboard';
 import ProfileForm from './components/profile-forms/ProfileForm';
 import AddExperience from './components/profile-forms/AddExperience';
@@ -16,14 +15,14 @@ import Post from './components/post/Post';
 import NotFound from './components/layout/NotFound';
 import PrivateRoute from './components/routing/PrivateRoute';
 import { LOGOUT } from './actions/types';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
-
-import './index.css';
 
 const App = () => {
   useEffect(() => {
@@ -45,8 +44,8 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
+        <ToastContainer />
         <Navbar />
-        <Alert />
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="register" element={<Register />} />

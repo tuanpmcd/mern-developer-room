@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import formatDate from '../../utils/formatDate';
@@ -13,51 +13,56 @@ const PostItem = ({
   post: { _id, text, name, avatar, user, likes, comments, date },
   showActions
 }) => (
-  <div className="post bg-white p-1 my-1">
-    <div>
-      <Link to={`/profile/${user}`}>
-        <img className="round-img" src={avatar} alt="" />
-        <h4>{name}</h4>
-      </Link>
-    </div>
-    <div>
-      <p className="my-1">{text}</p>
-      <p className="post-date">Posted on {formatDate(date)}</p>
+  <div
+    className="p-2 mb-4 border"
+    style={{ boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)" }}
+  >
+    <div className="row d-flex align-items-center ">
+      <div className='col-md-2'>
+        <Link className='text-decoration-none d-flex flex-column justify-content-center align-items-center' to={`/profile/${user}`}>
+          <img className="rounded-circle mb-2" width={70} src={avatar} alt="" />
+          <h6 className='text-info'>{name}</h6>
+        </Link>
+      </div>
+      <div className='col-md-10'>
+        <p className="my-1">{text}</p>
+        <p style={{fontSize: "12px", opacity: "0.7"}}>Posted on {formatDate(date)}</p>
 
-      {showActions && (
-        <Fragment>
-          <button
-            onClick={() => addLike(_id)}
-            type="button"
-            className="btn btn-light"
-          >
-            <i className="fas fa-thumbs-up" />{' '}
-            <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
-          </button>
-          <button
-            onClick={() => removeLike(_id)}
-            type="button"
-            className="btn btn-light"
-          >
-            <i className="fas fa-thumbs-down" />
-          </button>
-          <Link to={`/posts/${_id}`} className="btn btn-primary">
-            Discussion{' '}
-            {comments.length > 0 && (
-              <span className="comment-count">{comments.length}</span>
-            )}
-          </Link>
-          {!auth.loading && user === auth.user._id && (
+        {showActions && (
+          <>
             <button
-              onClick={() => deletePost(_id)}
+              onClick={() => addLike(_id)}
               type="button"
-              className="btn btn-danger"
+              className="btn btn-light me-1 text-secondary"
             >
-              <i className="fas fa-times" />
+              <i className="fas fa-thumbs-up" />{' '}
+              <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
             </button>
-          )}
-        </Fragment>
-      )}
+            <button
+              onClick={() => removeLike(_id)}
+              type="button"
+              className="btn btn-light me-1 text-secondary me-2"
+            >
+              <i className="fas fa-thumbs-down" />
+            </button>
+            <Link to={`/posts/${_id}`} className="btn btn-info btn-sm text-white me-5">
+              Discussion{' '}
+              {comments.length > 0 && (
+                <span>{comments.length}</span>
+              )}
+            </Link>
+            {!auth.loading && user === auth.user._id && (
+              <button
+                onClick={() => deletePost(_id)}
+                type="button"
+                className="btn btn-danger btn-sm"
+              >
+                <i className="fas fa-times" />
+              </button>
+            )}
+          </>
+        )}
+      </div>
     </div>
   </div>
 );

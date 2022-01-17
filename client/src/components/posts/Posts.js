@@ -11,18 +11,23 @@ const Posts = ({ getPosts, post: { posts } }) => {
   }, [getPosts]);
 
   return (
-    <section className="container">
-      <h1 className="large text-primary">Posts</h1>
-      <p className="lead">
-        <i className="fas fa-user" /> Welcome to the community
-      </p>
-      <PostForm />
-      <div className="posts">
-        {posts.map((post) => (
-          <PostItem key={post._id} post={post} />
-        ))}
+    <div className="container">
+      <div className="row">
+        <div className="col-md-8 mx-auto mt-4">
+          <h4 className="mt-5 mb-3">Posts</h4>
+          <p className="lead mb-4">
+            <i className="fas fa-user" /> Welcome to the community
+          </p>
+          <PostForm />
+          <div className="posts">
+            {posts.map((post) => (
+              <PostItem key={post._id} post={post} />
+            ))}
+          </div>
+        </div>
       </div>
-    </section>
+
+    </div>
   );
 };
 

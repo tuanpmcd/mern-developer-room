@@ -7,12 +7,9 @@ const PostForm = ({ addPost }) => {
   const [text, setText] = useState('');
 
   return (
-    <div className='post-form'>
-      <div className='bg-primary p'>
-        <h3>Say Something...</h3>
-      </div>
+    <div className=''>
       <form
-        className='form my-1'
+        className='mb-3'
         onSubmit={e => {
           e.preventDefault();
           addPost({ text });
@@ -21,14 +18,15 @@ const PostForm = ({ addPost }) => {
       >
         <textarea
           name='text'
+          className='form-control mb-2'
           cols='30'
-          rows='5'
-          placeholder='Create a post'
+          rows='3'
+          placeholder='Create a post...'
           value={text}
           onChange={e => setText(e.target.value)}
           required
         />
-        <input type='submit' className='btn btn-dark my-1' value='Submit' />
+        <input type='submit' className='btn btn-info text-white btn-sm' value='Submit' />
       </form>
     </div>
   );

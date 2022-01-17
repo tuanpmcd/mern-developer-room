@@ -16,9 +16,9 @@ const ProfileItem = ({
       className='col-lg-3 border mb-2 py-2 d-flex flex-column align-items-center'
       style={{ boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)" }}
     >
-      <img src={avatar} alt='' className="rounded-circle my-3" width={150} />
+      <img src={avatar} alt='' className="rounded-circle my-3" width={100} />
       <div className='d-flex flex-column align-items-center'>
-        <h2>{name}</h2>
+        <h5>{name}</h5>
         <p className='text-center mb-2'>
           {status} {company && <span> at {company}</span>}
         </p>

@@ -1,5 +1,4 @@
 import api from '../utils/api';
-import { setAlert } from './alert';
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -9,6 +8,7 @@ import {
   LOGIN_FAIL,
   LOGOUT
 } from './types';
+import { toast } from "react-toastify"
 
 /*
   NOTE: we don't need a config object for axios as the
@@ -47,7 +47,7 @@ export const register = (formData) => async (dispatch) => {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+      errors.forEach((error) => toast.error(error.msg))
     }
 
     dispatch({
@@ -73,7 +73,7 @@ export const login = (email, password) => async (dispatch) => {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+      errors.forEach((error) => toast.error(error.msg));
     }
 
     dispatch({
