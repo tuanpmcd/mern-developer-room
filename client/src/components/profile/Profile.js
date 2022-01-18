@@ -50,7 +50,7 @@ const Profile = ({ getProfileById, profile: { profile }, auth }) => {
                     ))}
                   </>
                 ) : (
-                  <h4>No experience credentials</h4>
+                  <h6>No experience credentials</h6>
                 )}
               </div>
 
@@ -66,7 +66,7 @@ const Profile = ({ getProfileById, profile: { profile }, auth }) => {
                     ))}
                   </>
                 ) : (
-                  <h4>No education credentials</h4>
+                  <h6>No education credentials</h6>
                 )}
               </div>
 

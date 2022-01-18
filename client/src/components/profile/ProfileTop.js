@@ -22,7 +22,7 @@ const ProfileTop = ({
       <div className="my-1">
         {website ? (
           <a href={website} target="_blank" rel="noopener noreferrer">
-            <i className="fas fa-globe text-white" />
+            <i className="fas fa-globe text-white mx-1" />
           </a>
         ) : null}
         {social
@@ -35,7 +35,7 @@ const ProfileTop = ({
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i className={`fab fa-${key} fa-2x`}></i>
+                  <i className={`fab fa-${key} text-white mx-1`}></i>
                 </a>
               ))
           : null}
