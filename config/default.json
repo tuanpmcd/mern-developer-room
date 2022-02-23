@@ -1,5 +1,5 @@
 {
-  "mongoURI": "YOUR_MONGO_URI",
-  "jwtSecret": "abc123",
-  "githubToken": "YOUR_GITHUB_TOKEN"
+  "mongoURI": "mongodb+srv://pmt:pmt123@cluster0.hpbfs.mongodb.net/mern-devconnector?retryWrites=true&w=majority",
+  "jwtSecret": "pmt",
+  "githubToken": "476912afb86d1b918a2832c66067a8cd78f85a7d"
 }
